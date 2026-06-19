@@ -1,0 +1,17 @@
+-- 조건에 맞는 사용자와 총 거래금액 조회하기
+-- 프로그래머스 중급 (⭐⭐⭐)
+-- 문제 링크: https://school.programmers.co.kr/learn/courses/30/lessons/164668
+-- 작성자: 전재민
+-- 작성일: 2026. 06. 19. 14:35:16
+
+SELECT
+    UGU.USER_ID,
+    UGU.NICKNAME,
+    SUM(UGB.PRICE) AS TOTAL_SALES
+FROM USED_GOODS_BOARD AS UGB
+JOIN USED_GOODS_USER AS UGU
+ON UGB.WRITER_ID = UGU.USER_ID
+WHERE UGB.STATUS = 'DONE'
+GROUP BY UGU.USER_ID, UGU.NICKNAME
+HAVING SUM(UGB.PRICE) >= 700000
+ORDER BY TOTAL_SALES;
