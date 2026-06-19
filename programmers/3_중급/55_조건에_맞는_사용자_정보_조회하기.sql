@@ -1,0 +1,24 @@
+-- 조건에 맞는 사용자 정보 조회하기
+-- 프로그래머스 중급 (⭐⭐⭐)
+-- 문제 링크: https://school.programmers.co.kr/learn/courses/30/lessons/164670
+-- 작성자: 전재민
+-- 작성일: 2026. 06. 19. 15:51:29
+
+SELECT
+    UGU.USER_ID,
+    UGU.NICKNAME,
+    CONCAT(UGU.CITY,' ',UGU.STREET_ADDRESS1,' ',UGU.STREET_ADDRESS2) AS '전체주소',
+    CONCAT(LEFT(UGU.TLNO,3),'-',SUBSTR(UGU.TLNO,4,4),'-',RIGHT(UGU.TLNO,4)) AS '전화번호'
+FROM USED_GOODS_BOARD AS UGB
+JOIN USED_GOODS_USER AS UGU
+    ON UGB.WRITER_ID = UGU.USER_ID
+WHERE UGB.WRITER_ID IN (
+    SELECT WRITER_ID
+    FROM USED_GOODS_BOARD
+    GROUP BY WRITER_ID
+    HAVING COUNT(BOARD_ID) >= 3
+)
+GROUP BY
+    UGU.USER_ID,
+    UGU.NICKNAME
+ORDER BY UGU.USER_ID DESC;
