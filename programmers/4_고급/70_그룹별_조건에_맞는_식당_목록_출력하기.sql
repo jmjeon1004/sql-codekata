@@ -1,0 +1,23 @@
+-- 그룹별 조건에 맞는 식당 목록 출력하기
+-- 프로그래머스 고급 (⭐⭐⭐⭐)
+-- 문제 링크: https://school.programmers.co.kr/learn/courses/30/lessons/131124
+-- 작성자: 전재민
+-- 작성일: 2026. 07. 09. 13:09:21
+
+SELECT
+    MP.MEMBER_NAME,
+    RR.REVIEW_TEXT,
+    DATE_FORMAT(RR.REVIEW_DATE, '%Y-%m-%d') AS REVIEW_DATE
+FROM MEMBER_PROFILE AS MP
+JOIN REST_REVIEW AS RR
+ON MP.MEMBER_ID = RR.MEMBER_ID
+WHERE RR.MEMBER_ID = (
+    SELECT MEMBER_ID
+    FROM REST_REVIEW
+    GROUP BY MEMBER_ID
+    ORDER BY COUNT(MEMBER_ID) DESC
+    LIMIT 1
+)
+ORDER BY
+    RR.REVIEW_DATE ASC,
+    RR.REVIEW_TEXT ASC;
