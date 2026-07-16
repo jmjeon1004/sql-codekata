@@ -4,9 +4,7 @@
 -- 작성자: 전재민
 -- 작성일: 2026. 02. 04. 21:44:34
 
-# Write your MySQL query statement below
-select
-from views
-where author_id = viewer_id
-    distinct viewer_id as id
-order by id
+SELECT distinct author_id as id
+FROM Views
+WHERE author_id = viewer_id
+order by id asc;
