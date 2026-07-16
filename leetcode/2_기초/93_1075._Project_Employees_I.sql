@@ -5,9 +5,9 @@
 -- 작성일: 2026. 07. 16. 20:15:54
 
 SELECT
-FROM Project as p
-JOIN Employee as e
-    p.project_id,
-    avg(e.experience_years) as average_years
-ON p.employee_id=e.employee_id
-GROUP BY p.project_id
+    p.project_id,
+    round(avg(e.experience_years),2) as average_years
+FROM Project as p
+JOIN Employee as e
+ON p.employee_id=e.employee_id
+GROUP BY p.project_id
