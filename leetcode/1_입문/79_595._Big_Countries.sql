@@ -4,10 +4,9 @@
 -- 작성자: 전재민
 -- 작성일: 2026. 01. 27. 23:24:00
 
-# Write your MySQL query statement below
-select
-    name,
-from world
-    population,
-    area
-where area >= 3000000 or population >= 25000000
+SELECT
+    name,
+    population,
+    area
+FROM World
+HAVING area >= 3000000 or population >= 25000000
