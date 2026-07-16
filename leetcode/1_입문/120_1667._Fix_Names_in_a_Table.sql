@@ -5,10 +5,10 @@
 -- 작성일: 2026. 07. 11. 15:31:49
 
 SELECT
-    user_id,
-    concat(
-        upper(substring(name,1,1)),
-    ) as name
-FROM Users
-        lower(substring(name,2))
-ORDER BY user_id
+    user_id,
+    concat(
+        upper(substring(name,1,1)),
+        lower(substring(name,2))
+    ) as name
+FROM Users
+ORDER BY user_id
