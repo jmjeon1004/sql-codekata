@@ -5,9 +5,9 @@
 -- 작성일: 2026. 07. 16. 16:00:44
 
 SELECT
-FROM Sales as s
-JOIN Product as p
-    p.product_name,
-    s.year,
-    s.price
-on s.product_id = p.product_id
+    p.product_name,
+    s.year,
+    s.price
+FROM Sales as s
+JOIN Product as p
+on s.product_id = p.product_id
